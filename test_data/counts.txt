@@ -1,0 +1,29 @@
+PERSON Bob Jones
+
+PERSON Mary
+
+PERSON Charles
+
+COMPUTER Mac
+
+COMPUTER PC
+
+COMPUTER Linux
+
+OTHER Tree
+
+OTHER Flower
+
+OTHER Bush
+
+ANIMAL Dog
+
+ANIMAL Cat
+
+ANIMAL Toucan
+
+PLACE Texas
+
+PLACE Home
+
+PLACE Oz
