@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require './categories'
+require './category_counter'
 
 def main
   if ARGV.empty?
@@ -7,14 +7,12 @@ def main
     exit(0)
   end
   begin
-    raw_file = File.read ARGV[0]
-    category_counts = CategoryCounter.count raw_file
-    CategoryCounter.print_categories category_counts
+    counter = CategoryCounter.new ARGV[0]
+    counter.print
   rescue => ex
     puts "Error: #{ex.message}\nPlease try again"
   end
-  puts
-  puts lines.join("\n")
+
 end
 
 main

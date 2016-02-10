@@ -1,34 +1,42 @@
 require 'set'
 
-module CategoryCounter
+class CategoryCounter
+  attr_reader :lines, :category_counts
   LEGAL_CATEGORIES = ['PERSON', 'PLACE', 'ANIMAL', 'COMPUTER', 'OTHER']
-  def self.get_counts lines
-    category_counts = {}
-    category_counts.default = 0
-    lines.map do |line|
-      category = line.split[0]
-      category_counts[category] += 1
-    end
-    category_counts
+
+  def initialize filename
+    raw_file= File.read filename
+    @lines = get_lines raw_file
+    set_counts
   end
 
-  def self.get_lines raw_file_string
-    lines = raw_file_string.split("\n").compact
+  def set_counts
+    @category_counts = {}
+    @category_counts.default = 0
+    @lines.map do |line|
+      category = line.split[0]
+      @category_counts[category] += 1
+    end
+  end
+
+  def get_lines raw_file
+    lines = raw_file.split("\n").compact
     lines = lines.uniq.reject{|line| line.empty?}
     lines = lines.reject do |line| 
       not LEGAL_CATEGORIES.include? line.split[0]
     end
   end
 
-  def self.print_categories categories
+  def print_categories
     LEGAL_CATEGORIES.each do |category|
-      puts "#{category} #{categories[category]}"
+      puts "#{category} #{@category_counts[category]}"
     end
   end
 
-  def self.count raw_file
-    lines = get_lines raw_file
-    get_counts lines
+  def print
+    print_categories
+    puts
+    puts @lines.join("\n")
   end
 end
 
