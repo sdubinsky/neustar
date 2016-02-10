@@ -10,6 +10,7 @@ class CategoryCounter
     set_counts
   end
 
+  # Set the total for each category
   def set_counts
     @category_counts = {}
     @category_counts.default = 0
@@ -19,6 +20,7 @@ class CategoryCounter
     end
   end
 
+  # parse the raw file string
   def get_lines raw_file
     lines = raw_file.split("\n").compact
     lines = lines.uniq.reject{|line| line.empty?}
@@ -27,6 +29,7 @@ class CategoryCounter
     end
   end
 
+  #format: CATEGORY_NAME TOTAL
   def print_categories
     LEGAL_CATEGORIES.each do |category|
       puts "#{category} #{@category_counts[category]}"
