@@ -12,9 +12,8 @@ module CategoryCounter
     category_counts
   end
 
-  def self.get_lines filename
-    lines = File.read filename
-    lines = lines.split("\n").compact
+  def self.get_lines raw_file_string
+    lines = raw_file_string.split("\n").compact
     lines = lines.uniq.reject{|line| line.empty?}
     lines = lines.reject do |line| 
       not LEGAL_CATEGORIES.include? line.split[0]
@@ -27,8 +26,8 @@ module CategoryCounter
     end
   end
 
-  def self.count filename
-    lines = get_lines filename
+  def self.count raw_file
+    lines = get_lines raw_file
     get_counts lines
   end
 end
