@@ -23,4 +23,12 @@ class TestCategories < Minitest::Test
     counter = CategoryCounter.new filename
     assert_equal counter.lines.count, 0
   end
+
+  def test_example
+    filename = "./test_data/example.txt"
+    counter = CategoryCounter.new filename
+    assert_equal 2, counter.category_counts['PERSON']
+    assert_equal 0, counter.category_counts['FOOD']
+    assert_equal "PERSON Bob Jones", counter.lines[0]
+  end
 end
